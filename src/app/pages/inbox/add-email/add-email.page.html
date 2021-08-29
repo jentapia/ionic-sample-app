@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/inbox"></ion-back-button>
+    </ion-buttons>
+    <ion-title>New Email</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" novalidate>
+    <ion-item>
+      <ion-label>To: </ion-label>
+      <ion-input formControlName="emailControl" required="true" type="email" #email></ion-input>
+    </ion-item>
+
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.emailControl">
+        <div class="error ion-padding"
+          *ngIf="formGroup.get('emailControl').hasError(validation.type) && (formGroup.get('emailControl').dirty || formGroup.get('emailControl').touched)">
+          <ion-text color="danger">{{ validation.message }}</ion-text>
+        </div>
+      </ng-container>
+    </div>
+
+    <ion-item>
+      <ion-label>Subject: </ion-label>
+      <ion-input formControlName="subjectControl" required="true" type="text" placeholder="Subject Required" #subject>
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Message: </ion-label>
+      <ion-textarea formControlName="messageControl" required="true" rows="10" cols="40" placeholder="Message Required"
+        #message></ion-textarea>
+    </ion-item>
+
+    <ion-button [disabled]="!formGroup.valid" type="submit">Send</ion-button>
+  </form>
+</ion-content>

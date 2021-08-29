@@ -1,0 +1,24 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Spam</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid *ngFor="let spamEmail of spamEmails">
+        <ion-card>
+            <ion-row>
+                <ion-col size="3">From:</ion-col>
+                <ion-col>{{spamEmail.email}}</ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="3">Subject:</ion-col>
+                <ion-col>{{spamEmail.subject}}</ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="3">Message: </ion-col>
+                <ion-col>{{spamEmail.message}}</ion-col>
+            </ion-row>
+        </ion-card>
+    </ion-grid>
+</ion-content>
